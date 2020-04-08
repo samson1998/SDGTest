@@ -12,10 +12,7 @@ def convertToDays(period_type, timeToElapse):
     return 'Incorrect input'
 
 
-
-
-
-period_type = input('Enter ')
+period_type = input('Enter a period- days, weeks or months')
 timeToElapse = int(input('Enter the number of days'))
 reportedCases = int(input('Enter the number of reported cases'))
 population = int(input('Population'))
