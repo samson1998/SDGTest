@@ -22,10 +22,20 @@ population = int(input('Population'))
 totalHospitalBeds = int(input('Hospital beds'))
 currentlyInfected = 0
 infectionsByRequestedTime = 0
+name = input('Enter a country name')
+avgAge = int(input('Enter an age'))
+avgDailyIncomeInUSD =  int(input('Enter an integer'))
+avgDailyIncomePopulation =  int(input('Enter an integer'))
 
 data = {
 
     'data' : {
+      'region':{
+        'name' : name,
+        'avgAge' : avgAge,
+        'avgDailyIncomeInUSD' : avgDailyIncomeInUSD,
+        'avgDailyIncomePopulation' : avgDailyIncomePopulation
+      },
       'period_type' : period_type,
       'timeToElapse' : convertToDays(period_type, timeToElapse),
       'reportedCases' : reportedCases,
