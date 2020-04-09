@@ -44,7 +44,7 @@ def estimator(data):
   }
 
 
-  days = int(2 ** (data['timeToElapse']/3))
+  days = 2 ** int((data['timeToElapse']/3))
   beds = int(outputData['data']['totalHospitalBeds'] * 0.35)
   outputData['impact']['infectionsByRequestedTime'] = outputData['impact']['currentlyInfected'] * days
   outputData['severeImpact']['infectionsByRequestedTime'] = outputData['severeImpact']['currentlyInfected'] * days
