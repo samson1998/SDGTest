@@ -9,7 +9,7 @@ def convertToDays(period_type, timeToElapse):
     return timeToElapse * 30
 
   else:
-    return 'Incorrect input'
+    return timeToElapse
 
 
 
