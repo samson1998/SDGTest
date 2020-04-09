@@ -13,7 +13,7 @@ def convertToDays(period_type, timeToElapse):
 
 
 
-inputData = {
+data = {
 'region': {
     'name': "Africa",
     'avgAge': 19.7,
@@ -27,41 +27,37 @@ inputData = {
   'totalHospitalBeds': 1380614
 }
 
-inputData['timeToElapse'] = convertToDays(inputData['periodType'], inputData['timeToElapse'])
+def estimator(data):
+  
+  data['timeToElapse'] = convertToDays(data['periodType'], data['timeToElapse'])
 
-data = {
-    'data': inputData,
+  outputData = {
+    'data': data,
     'impact' : {
-      'currentlyInfected' : inputData['reportedCases'] * 10,
+      'currentlyInfected' : data['reportedCases'] * 10,
     },
 
     'severeImpact' : {
-      'currentlyInfected' : inputData['reportedCases'] * 50,
+      'currentlyInfected' : data['reportedCases'] * 50,
     }
 
   }
 
 
 
-data['impact']['infectionsByRequestedTime'] = round(data['impact']['currentlyInfected'] * (2 ** (inputData['timeToElapse']/3)), 2)
-data['severeImpact']['infectionsByRequestedTime'] = round(data['severeImpact']['currentlyInfected'] * (2 ** (inputData['timeToElapse']/3)), 2)
-data['impact']['severeCasesByRequestedTime'] = round(data['impact']['infectionsByRequestedTime'] * (15/100), 2)
-data['severeImpact']['severeCasesByRequestedTime'] = round(data['impact']['infectionsByRequestedTime'] * (15/100), 2)
-data['impact']['hospitalBedsByRequestedTime'] = data['data']['totalHospitalBeds'] - data['impact']['severeCasesByRequestedTime'] 
-data['severeImpact']['hospitalBedsByRequestedTime'] = data['data']['totalHospitalBeds'] - data['severeImpact']['severeCasesByRequestedTime']
-data['impact']['casesForICUByRequestedTime'] = round(data['impact']['infectionsByRequestedTime'] * (5/100), 2)
-data['severeImpact']['casesForICUByRequestedTime'] = round(data['severeImpact']['infectionsByRequestedTime'] * (5/100), 2)
-data['impact']['casesForVentilatorsByRequestedTime'] = round(data['impact']['infectionsByRequestedTime'] * (2/100), 2)
-data['severeImpact']['casesForVentilatorsByRequestedTime'] = round(data['severeImpact']['infectionsByRequestedTime'] * (2/100), 2)
+  outputData['impact']['infectionsByRequestedTime'] = round(outputData['impact']['currentlyInfected'] * (2 ** (data['timeToElapse']/3)), 2)
+  outputData['severeImpact']['infectionsByRequestedTime'] = round(outputData['severeImpact']['currentlyInfected'] * (2 ** (data['timeToElapse']/3)), 2)
+  outputData['impact']['severeCasesByRequestedTime'] = round(outputData['impact']['infectionsByRequestedTime'] * (15/100), 2)
+  outputData['severeImpact']['severeCasesByRequestedTime'] = round(outputData['impact']['infectionsByRequestedTime'] * (15/100), 2)
+  outputData['impact']['hospitalBedsByRequestedTime'] = outputData['data']['totalHospitalBeds'] - outputData['impact']['severeCasesByRequestedTime'] 
+  outputData['severeImpact']['hospitalBedsByRequestedTime'] = outputData['data']['totalHospitalBeds'] - outputData['severeImpact']['severeCasesByRequestedTime']
+  outputData['impact']['casesForICUByRequestedTime'] = round(outputData['impact']['infectionsByRequestedTime'] * (5/100), 2)
+  outputData['severeImpact']['casesForICUByRequestedTime'] = round(outputData['severeImpact']['infectionsByRequestedTime'] * (5/100), 2)
+  outputData['impact']['casesForVentilatorsByRequestedTime'] = round(outputData['impact']['infectionsByRequestedTime'] * (2/100), 2)
+  outputData['severeImpact']['casesForVentilatorsByRequestedTime'] = round(outputData['severeImpact']['infectionsByRequestedTime'] * (2/100), 2)
 
 
-
-
-# print(data)
-
-def estimator(inputData):
-  
-  return data
+  return outputData
 
 
 print(estimator(data))
