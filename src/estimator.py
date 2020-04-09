@@ -44,13 +44,14 @@ def estimator(data):
   }
 
 
-
-  outputData['impact']['infectionsByRequestedTime'] = outputData['impact']['currentlyInfected'] * int((2 ** (data['timeToElapse']/3)))
-  outputData['severeImpact']['infectionsByRequestedTime'] = outputData['severeImpact']['currentlyInfected'] * int((2 ** (data['timeToElapse']/3)))
-  outputData['impact']['severeCasesByRequestedTime'] = outputData['impact']['infectionsByRequestedTime'] * (15/100)
-  outputData['severeImpact']['severeCasesByRequestedTime'] = outputData['severeImpact']['infectionsByRequestedTime'] * (15/100)
-  outputData['impact']['hospitalBedsByRequestedTime'] = int((outputData['data']['totalHospitalBeds'] * 0.35) - outputData['impact']['severeCasesByRequestedTime'])
-  outputData['severeImpact']['hospitalBedsByRequestedTime'] = int((outputData['data']['totalHospitalBeds'] * 0.35) - outputData['severeImpact']['severeCasesByRequestedTime'])
+  days = int(2 ** (data['timeToElapse']/3))
+  beds = int(outputData['data']['totalHospitalBeds'] * 0.35)
+  outputData['impact']['infectionsByRequestedTime'] = outputData['impact']['currentlyInfected'] * days
+  outputData['severeImpact']['infectionsByRequestedTime'] = outputData['severeImpact']['currentlyInfected'] * days
+  outputData['impact']['severeCasesByRequestedTime'] = outputData['impact']['infectionsByRequestedTime'] * 0.15
+  outputData['severeImpact']['severeCasesByRequestedTime'] = outputData['severeImpact']['infectionsByRequestedTime'] * 0.15
+  outputData['impact']['hospitalBedsByRequestedTime'] =  beds - outputData['impact']['severeCasesByRequestedTime']
+  outputData['severeImpact']['hospitalBedsByRequestedTime'] = beds - outputData['severeImpact']['severeCasesByRequestedTime']
   outputData['impact']['casesForICUByRequestedTime'] = int(round(outputData['impact']['infectionsByRequestedTime'] * (5/100), 2))
   outputData['severeImpact']['casesForICUByRequestedTime'] = int(round(outputData['severeImpact']['infectionsByRequestedTime'] * (5/100), 2))
   outputData['impact']['casesForVentilatorsByRequestedTime'] = int(round(outputData['impact']['infectionsByRequestedTime'] * (2/100), 2))
