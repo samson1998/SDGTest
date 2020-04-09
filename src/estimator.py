@@ -45,8 +45,8 @@ def estimator(data):
 
 
 
-  outputData['impact']['infectionsByRequestedTime'] = round(outputData['impact']['currentlyInfected'] * (2 ** (data['timeToElapse']/3)), 2)
-  outputData['severeImpact']['infectionsByRequestedTime'] = round(outputData['severeImpact']['currentlyInfected'] * (2 ** (data['timeToElapse']/3)), 2)
+  outputData['impact']['infectionsByRequestedTime'] = outputData['impact']['currentlyInfected'] * int((2 ** (data['timeToElapse']/3)))
+  outputData['severeImpact']['infectionsByRequestedTime'] = outputData['severeImpact']['currentlyInfected'] * int((2 ** (data['timeToElapse']/3)))
   outputData['impact']['severeCasesByRequestedTime'] = round(outputData['impact']['infectionsByRequestedTime'] * (15/100), 2)
   outputData['severeImpact']['severeCasesByRequestedTime'] = round(outputData['severeImpact']['infectionsByRequestedTime'] * (15/100), 2)
   outputData['impact']['hospitalBedsByRequestedTime'] = int((outputData['data']['totalHospitalBeds'] * 0.35) - outputData['impact']['severeCasesByRequestedTime'])
