@@ -103,7 +103,8 @@ def estimator(data):
   def money_lost(case):
     inf = infected_till_date(case)
     days = number_of_days(periodtype, time_to_elapse)
-    return round(inf * income_population * income * days, 2)
+    return int((inf * income_population) * income * days)
+    # return round(inf * income_population * income * days, 2)
 
 
 
