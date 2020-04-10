@@ -9,7 +9,7 @@ def convertToDays(period_type, timeToElapse):
     return timeToElapse * 30
 
   else:
-    return timeToElapse
+    return 'Incorrect input'
 
 
 
@@ -52,16 +52,12 @@ def estimator(data):
   outputData['severeImpact']['severeCasesByRequestedTime'] = outputData['severeImpact']['infectionsByRequestedTime'] * 0.15
   outputData['impact']['hospitalBedsByRequestedTime'] =  beds - outputData['impact']['severeCasesByRequestedTime']
   outputData['severeImpact']['hospitalBedsByRequestedTime'] = beds - outputData['severeImpact']['severeCasesByRequestedTime']
-  outputData['impact']['casesForICUByRequestedTime'] = int(round(outputData['impact']['infectionsByRequestedTime'] * (5/100), 2))
-  outputData['severeImpact']['casesForICUByRequestedTime'] = int(round(outputData['severeImpact']['infectionsByRequestedTime'] * (5/100), 2))
-  outputData['impact']['casesForVentilatorsByRequestedTime'] = int(round(outputData['impact']['infectionsByRequestedTime'] * (2/100), 2))
-  outputData['severeImpact']['casesForVentilatorsByRequestedTime'] = int(round(outputData['severeImpact']['infectionsByRequestedTime'] * (2/100), 2))
+  outputData['impact']['casesForICUByRequestedTime'] = int((outputData['impact']['infectionsByRequestedTime'] * (5/100), 2))
+  outputData['severeImpact']['casesForICUByRequestedTime'] = int((outputData['severeImpact']['infectionsByRequestedTime'] * (5/100), 2))
+  outputData['impact']['casesForVentilatorsByRequestedTime'] = int((outputData['impact']['infectionsByRequestedTime'] * (2/100), 2))
+  outputData['severeImpact']['casesForVentilatorsByRequestedTime'] = int((outputData['severeImpact']['infectionsByRequestedTime'] * (2/100), 2))
   outputData['impact']['dollarsInFlight'] = int((outputData['impact']['infectionsByRequestedTime'] * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / data['timeToElapse'])
   outputData['severeImpact']['dollarsInFlight'] = int((outputData['severeImpact']['infectionsByRequestedTime'] * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / data['timeToElapse'])
     
 
   return outputData
-
-
-# # print(estimator(data))
-
