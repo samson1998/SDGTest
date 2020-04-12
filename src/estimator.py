@@ -37,8 +37,6 @@ def estimator(data):
     inf = infected_till_date(case)
     days = number_of_days(periodtype, time_to_elapse)
     return int((inf * income_population * income) / days)
-    # return round(inf * income_population * income * days, 2)
-
 
 
   result = {
@@ -64,20 +62,3 @@ def estimator(data):
   }
 
   return result
-
-# #test
-# tt = {
-#     "region": {
-#         "name": "Africa",
-#         "avgAge": 19.7,
-#         "avgDailyIncomeInUSD": 4,
-#         "avgDailyIncomePopulation": 0.73
-#     },
-#     "periodType": "days",
-#     "timeToElapse": 38,
-#     "reportedCases": 2747,
-#     "population": 92931687,
-#     "totalHospitalBeds": 678874
-# }
-
-# print(estimator(tt))
