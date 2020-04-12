@@ -39,8 +39,6 @@ def estimator(data):
     return int((inf * income_population * income) / days)
 
 
-
-
   result = {
     "data":data,
     "impact": {
